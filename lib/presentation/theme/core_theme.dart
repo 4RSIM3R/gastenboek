@@ -51,26 +51,26 @@ class AppCoreTheme {
     ),
     textTheme: GoogleFonts.interTextTheme(),
     // AppBar Theme
-    appBarTheme: AppBarTheme(
-      elevation: 10.0,
-      toolbarHeight: kToolbarHeight,
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      systemOverlayStyle: systemUiOverlayStyle,
-      iconTheme: const IconThemeData(
-        color: primaryColor,
-      ),
-      actionsIconTheme: const IconThemeData(
-        color: primaryColor,
-      ),
-      titleTextStyle: TextStyle(
-        fontSize: 18,
-        color: const Color(0xFF101010),
-        fontWeight: FontWeight.w600,
-        fontFamily: GoogleFonts.inter().fontFamily,
-      ),
-    ),
+    // appBarTheme: AppBarTheme(
+    //   elevation: 10.0,
+    //   toolbarHeight: kToolbarHeight,
+    //   backgroundColor: Colors.white,
+    //   foregroundColor: Colors.white,
+    //   surfaceTintColor: Colors.white,
+    //   systemOverlayStyle: systemUiOverlayStyle,
+    //   iconTheme: const IconThemeData(
+    //     color: primaryColor,
+    //   ),
+    //   actionsIconTheme: const IconThemeData(
+    //     color: primaryColor,
+    //   ),
+    //   titleTextStyle: TextStyle(
+    //     fontSize: 18,
+    //     color: const Color(0xFF101010),
+    //     fontWeight: FontWeight.w600,
+    //     fontFamily: GoogleFonts.inter().fontFamily,
+    //   ),
+    // ),
     // BottomNavigationBar Theme
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       elevation: 5.0,

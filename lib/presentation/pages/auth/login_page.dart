@@ -50,14 +50,12 @@ class _LoginPageState extends State<LoginPage> {
                   orElse: () {},
                   loading: () => context.showLoadingIndicator(),
                   error: (msg) {
-                    context.showSnackbar(
-                        title: "Error", message: msg, error: true);
+                    context.showSnackbar(title: "Error", message: msg, error: true);
                   },
                   success: (msg) {
                     context.hideLoading();
                     context.showSnackbar(title: "Sukses", message: msg);
-                    context.route.pushAndPopUntil(const HomeRoute(),
-                        predicate: (route) => false);
+                    context.route.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
                   },
                 );
               },
@@ -73,8 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                               context.pop();
                             } else {
                               // context.read<AuthCubit>().login(formG.value);
-                              context.route.pushAndPopUntil(const HomeRoute(),
-                                  predicate: (route) => false);
+                              context.route.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
                             }
                           },
                           title: "Masuk",
@@ -94,8 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                                   color: ColorTheme.primary,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () =>
-                                      context.route.push(const RegisterRoute()),
+                                  ..onTap = () => context.route.push(const RegisterRoute()),
                               ),
                             ],
                           ),
@@ -164,8 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: ColorTheme.primary,
                         ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () =>
-                              context.route.push(const ForgotPasswordRoute()),
+                          ..onTap = () => context.route.push(const ForgotPasswordRoute()),
                       ),
                     ],
                   ),

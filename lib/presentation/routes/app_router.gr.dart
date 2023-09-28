@@ -88,10 +88,27 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const PostPage(),
       );
     },
+    ScanRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ScanPage(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
+      );
+    },
+    GuestFormRoute.name: (routeData) {
+      final args = routeData.argsAs<GuestFormRouteArgs>(
+          orElse: () => const GuestFormRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GuestFormPage(
+          key: args.key,
+          model: args.model,
+        ),
       );
     },
   };
@@ -328,6 +345,20 @@ class PostRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ScanPage]
+class ScanRoute extends PageRouteInfo<void> {
+  const ScanRoute({List<PageRouteInfo>? children})
+      : super(
+          ScanRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ScanRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
@@ -339,4 +370,42 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GuestFormPage]
+class GuestFormRoute extends PageRouteInfo<GuestFormRouteArgs> {
+  GuestFormRoute({
+    Key? key,
+    NIKModel? model,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GuestFormRoute.name,
+          args: GuestFormRouteArgs(
+            key: key,
+            model: model,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GuestFormRoute';
+
+  static const PageInfo<GuestFormRouteArgs> page =
+      PageInfo<GuestFormRouteArgs>(name);
+}
+
+class GuestFormRouteArgs {
+  const GuestFormRouteArgs({
+    this.key,
+    this.model,
+  });
+
+  final Key? key;
+
+  final NIKModel? model;
+
+  @override
+  String toString() {
+    return 'GuestFormRouteArgs{key: $key, model: $model}';
+  }
 }

@@ -16,27 +16,28 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
     as _i7;
 
-import 'application/auth/auth_cubit.dart' as _i21;
-import 'application/bloc/pagination_bloc.dart' as _i22;
+import 'application/auth/auth_cubit.dart' as _i22;
+import 'application/bloc/pagination_bloc.dart' as _i23;
 import 'common/network/network_info.dart' as _i8;
 import 'common/permission/permission.dart' as _i9;
 import 'common/permission/permission_impl.dart' as _i10;
-import 'common/storage/shared_pref_storage.dart' as _i11;
-import 'common/storage/storage.dart' as _i14;
-import 'common/storage/storage_path.dart' as _i12;
+import 'common/storage/shared_pref_storage.dart' as _i12;
+import 'common/storage/storage.dart' as _i15;
+import 'common/storage/storage_path.dart' as _i13;
 import 'common/utils/image_resize.dart' as _i6;
-import 'data/datasources/network/network_source.dart' as _i23;
+import 'data/datasources/network/network_source.dart' as _i24;
 import 'data/datasources/remote_datasources/auth_remote/auth_remote.dart'
-    as _i15;
-import 'data/datasources/remote_datasources/auth_remote/auth_remote_impl.dart'
     as _i16;
+import 'data/datasources/remote_datasources/auth_remote/auth_remote_impl.dart'
+    as _i17;
 import 'data/datasources/remote_datasources/post_remote/post_remote.dart'
-    as _i18;
-import 'data/datasources/remote_datasources/post_remote/post_remote_impl.dart'
     as _i19;
-import 'data/datasources/session/session_source.dart' as _i13;
-import 'data/repositories/auth_repository.dart' as _i17;
-import 'data/repositories/post_repository.dart' as _i20;
+import 'data/datasources/remote_datasources/post_remote/post_remote_impl.dart'
+    as _i20;
+import 'data/datasources/session/session_source.dart' as _i14;
+import 'data/repositories/auth_repository.dart' as _i18;
+import 'data/repositories/post_repository.dart' as _i21;
+import 'presentation/pages/scan/cubit/scan_cubit.dart' as _i11;
 import 'presentation/routes/app_router.dart' as _i3;
 
 // ignore_for_file: unnecessary_lambdas
@@ -62,39 +63,40 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i8.NetworkInfo>(
       () => _i8.NetworkInfoImpl(gh<_i7.InternetConnection>()));
   gh.lazySingleton<_i9.PermissionInterface>(() => _i10.KendaliPermission());
-  gh.lazySingleton<_i11.SharedPrefStorageInterface>(
-      () => _i11.SharedPreferenceStorage());
-  await gh.factoryAsync<_i12.StoragePathInterface>(
+  gh.factory<_i11.ScanCubit>(() => _i11.ScanCubit());
+  gh.lazySingleton<_i12.SharedPrefStorageInterface>(
+      () => _i12.SharedPreferenceStorage());
+  await gh.factoryAsync<_i13.StoragePathInterface>(
     () => apiService.init(),
     preResolve: true,
   );
-  gh.lazySingleton<_i13.SessionSource>(
-      () => _i13.SessionSource(storage: gh<_i11.SharedPrefStorageInterface>()));
-  gh.lazySingleton<_i14.StorageInterface>(() => _i14.Storage(
+  gh.lazySingleton<_i14.SessionSource>(
+      () => _i14.SessionSource(storage: gh<_i12.SharedPrefStorageInterface>()));
+  gh.lazySingleton<_i15.StorageInterface>(() => _i15.Storage(
         permission: gh<_i9.PermissionInterface>(),
-        storagePath: gh<_i12.StoragePathInterface>(),
+        storagePath: gh<_i13.StoragePathInterface>(),
       ));
-  gh.lazySingleton<_i15.AuthRemote>(() => _i16.AuthRemoteImpl(
+  gh.lazySingleton<_i16.AuthRemote>(() => _i17.AuthRemoteImpl(
         gh<_i4.Dio>(),
-        gh<_i13.SessionSource>(),
+        gh<_i14.SessionSource>(),
       ));
-  gh.lazySingleton<_i17.AuthRepository>(() => _i17.AuthRepository(
+  gh.lazySingleton<_i18.AuthRepository>(() => _i18.AuthRepository(
         gh<_i8.NetworkInfo>(),
-        gh<_i15.AuthRemote>(),
-        gh<_i13.SessionSource>(),
+        gh<_i16.AuthRemote>(),
+        gh<_i14.SessionSource>(),
       ));
-  gh.lazySingleton<_i18.PostRemote>(() => _i19.PostRemoteImpl(
+  gh.lazySingleton<_i19.PostRemote>(() => _i20.PostRemoteImpl(
         gh<_i4.Dio>(),
-        gh<_i13.SessionSource>(),
+        gh<_i14.SessionSource>(),
       ));
-  gh.lazySingleton<_i20.PostRepository>(() => _i20.PostRepository(
+  gh.lazySingleton<_i21.PostRepository>(() => _i21.PostRepository(
         gh<_i8.NetworkInfo>(),
-        gh<_i18.PostRemote>(),
+        gh<_i19.PostRemote>(),
       ));
-  gh.factory<_i21.AuthCubit>(() => _i21.AuthCubit(gh<_i17.AuthRepository>()));
-  gh.factory<_i22.PaginationBloc>(
-      () => _i22.PaginationBloc(gh<_i20.PostRepository>()));
+  gh.factory<_i22.AuthCubit>(() => _i22.AuthCubit(gh<_i18.AuthRepository>()));
+  gh.factory<_i23.PaginationBloc>(
+      () => _i23.PaginationBloc(gh<_i21.PostRepository>()));
   return getIt;
 }
 
-class _$ApiService extends _i23.ApiService {}
+class _$ApiService extends _i24.ApiService {}
