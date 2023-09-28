@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    ChangePasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<ChangePasswordRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ChangePasswordPage(
+          key: args.key,
+          email: args.email,
+          otp: args.otp,
+        ),
+      );
+    },
     ForgotPasswordRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -83,18 +94,50 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
-    ChangePasswordRoute.name: (routeData) {
-      final args = routeData.argsAs<ChangePasswordRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ChangePasswordPage(
-          key: args.key,
-          email: args.email,
-          otp: args.otp,
-        ),
-      );
-    },
   };
+}
+
+/// generated route for
+/// [ChangePasswordPage]
+class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({
+    Key? key,
+    required String email,
+    required String otp,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChangePasswordRoute.name,
+          args: ChangePasswordRouteArgs(
+            key: key,
+            email: email,
+            otp: otp,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangePasswordRoute';
+
+  static const PageInfo<ChangePasswordRouteArgs> page =
+      PageInfo<ChangePasswordRouteArgs>(name);
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({
+    this.key,
+    required this.email,
+    required this.otp,
+  });
+
+  final Key? key;
+
+  final String email;
+
+  final String otp;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{key: $key, email: $email, otp: $otp}';
+  }
 }
 
 /// generated route for
@@ -296,47 +339,4 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ChangePasswordPage]
-class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
-  ChangePasswordRoute({
-    Key? key,
-    required String email,
-    required String otp,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ChangePasswordRoute.name,
-          args: ChangePasswordRouteArgs(
-            key: key,
-            email: email,
-            otp: otp,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ChangePasswordRoute';
-
-  static const PageInfo<ChangePasswordRouteArgs> page =
-      PageInfo<ChangePasswordRouteArgs>(name);
-}
-
-class ChangePasswordRouteArgs {
-  const ChangePasswordRouteArgs({
-    this.key,
-    required this.email,
-    required this.otp,
-  });
-
-  final Key? key;
-
-  final String email;
-
-  final String otp;
-
-  @override
-  String toString() {
-    return 'ChangePasswordRouteArgs{key: $key, email: $email, otp: $otp}';
-  }
 }

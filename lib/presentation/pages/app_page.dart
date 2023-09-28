@@ -35,8 +35,7 @@ class _AppPageState extends State<AppPage> {
             ],
           ),
           builder: (BuildContext context, Widget? child) {
-            ErrorWidget.builder =
-                (FlutterErrorDetails details) => AppErrorView(details: details);
+            ErrorWidget.builder = (FlutterErrorDetails details) => AppErrorView(details: details);
             return child!;
           },
         ),

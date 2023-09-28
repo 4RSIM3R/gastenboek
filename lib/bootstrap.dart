@@ -32,7 +32,6 @@ Future<void> bootstrap() async {
       await configureDependencies();
       runApp(const AppPage());
     },
-    (Object error, StackTrace stackTrace) =>
-        logger.e(error.toString(), error, stackTrace),
+    (Object error, StackTrace stackTrace) => logger.e(error.toString(), error, stackTrace),
   );
 }

@@ -49,11 +49,11 @@ class AppCoreTheme {
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: primaryColor,
     ),
-    textTheme: GoogleFonts.robotoTextTheme(),
+    textTheme: GoogleFonts.interTextTheme(),
     // AppBar Theme
     appBarTheme: AppBarTheme(
       elevation: 10.0,
-      toolbarHeight: kToolbarHeight + 10,
+      toolbarHeight: kToolbarHeight,
       backgroundColor: Colors.white,
       foregroundColor: Colors.white,
       surfaceTintColor: Colors.white,
@@ -68,7 +68,7 @@ class AppCoreTheme {
         fontSize: 18,
         color: const Color(0xFF101010),
         fontWeight: FontWeight.w600,
-        fontFamily: GoogleFonts.roboto().fontFamily,
+        fontFamily: GoogleFonts.inter().fontFamily,
       ),
     ),
     // BottomNavigationBar Theme
