@@ -11,7 +11,7 @@ class PrimaryButton extends StatelessWidget {
     this.isSmall = false,
     this.width,
     this.isFullWidth = true,
-    this.backgroundColor = ColorTheme.primary,
+    this.backgroundColor = ColorTheme.primary2,
   }) : super(key: key);
 
   final String title;
