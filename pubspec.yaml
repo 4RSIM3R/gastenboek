@@ -82,6 +82,7 @@ dependencies:
   camera: ^0.10.5+4
   google_mlkit_text_recognition: ^0.10.0
   nik_validator: ^1.1.2
+  curved_navigation_bar: ^1.0.3
 
 # Local Database
 # drift: ^2.5.0
