@@ -34,6 +34,7 @@ class ColorTheme {
   );
 
   static const Color primary = Color(0xFF1642A3);
+  static const Color primary2 = Color(0xFF3CB3BD);
 
   //text colors
   static const Color textDark = Color(0xFF222222);
