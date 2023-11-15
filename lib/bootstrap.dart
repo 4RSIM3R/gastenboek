@@ -27,11 +27,11 @@ Future<void> bootstrap() async {
       WidgetsFlutterBinding.ensureInitialized();
       Bloc.observer = AppBlocObserver();
       FlutterError.onError = (FlutterErrorDetails details) {
-        logger.e(details.exceptionAsString(), details.exception, details.stack);
+        logger.e(details.exceptionAsString());
       };
       await configureDependencies();
       runApp(const AppPage());
     },
-    (Object error, StackTrace stackTrace) => logger.e(error.toString(), error, stackTrace),
+    (Object error, StackTrace stackTrace) => logger.e(error.toString()),
   );
 }

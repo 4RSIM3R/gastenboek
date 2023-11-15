@@ -7,6 +7,8 @@ import 'package:next_starter/common/extensions/context_extension.dart';
 import 'package:next_starter/injection.dart';
 import 'package:next_starter/presentation/pages/scan/cubit/scan_cubit.dart';
 import 'package:next_starter/presentation/routes/app_router.dart';
+import 'package:next_starter/presentation/theme/app_assets.dart';
+import 'package:next_starter/presentation/theme/theme.dart';
 
 @RoutePage()
 class ScanPage extends StatefulWidget {
@@ -102,27 +104,51 @@ class _ScanPageState extends State<ScanPage> {
                     ),
                     Center(
                       child: Container(
-                        width: 320,
                         height: 200,
+                        width: 320,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2.0),
+                          border: Border.all(color: Colors.white, width: 3.0),
                           borderRadius: BorderRadius.circular(10.0),
                           color: Colors.transparent,
                         ),
                       ),
                     ),
                     Positioned(
-                      bottom: 20,
+                      bottom: 40,
                       left: 0,
                       right: 0,
-                      child: Center(
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.blue,
-                          onPressed: () {
-                            _takePicture();
-                          },
-                          child: const Icon(CupertinoIcons.camera),
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomIconButton(
+                            height: 50,
+                            width: 50,
+                            icon: AppAssets.icon_gallery,
+                            iconSize: 20,
+                          ),
+                          SizedBox(width: 32),
+                          SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: FloatingActionButton(
+                              backgroundColor: ColorTheme.primary2,
+                              onPressed: () {
+                                _takePicture();
+                              },
+                              child: ImageIcon(
+                                AssetImage(AppAssets.icon_scan),
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 32),
+                          CustomIconButton(
+                            height: 50,
+                            width: 50,
+                            icon: AppAssets.icon_files,
+                            iconSize: 20,
+                          ),
+                        ],
                       ),
                     )
                   ],
@@ -134,6 +160,37 @@ class _ScanPageState extends State<ScanPage> {
               }
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({
+    super.key,
+    required this.height,
+    required this.width,
+    this.onPressed,
+    required this.icon,
+    this.iconSize,
+  });
+  final double height;
+  final double width;
+  final Future? onPressed;
+  final String icon;
+  final double? iconSize;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      width: width,
+      child: FloatingActionButton(
+        backgroundColor: ColorTheme.primary2,
+        onPressed: () {},
+        child: ImageIcon(
+          AssetImage(icon),
+          size: iconSize,
         ),
       ),
     );
