@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'common/logging/logger.dart';
 import 'injection.dart';
@@ -30,6 +31,10 @@ Future<void> bootstrap() async {
         logger.e(details.exceptionAsString());
       };
       await configureDependencies();
+      await Supabase.initialize(
+        url: 'https://nfxpgresracriiuzpolk.supabase.co',
+        anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5meHBncmVzcmFjcmlpdXpwb2xrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDMyMTE5NjgsImV4cCI6MjAxODc4Nzk2OH0.d7uOwNmlWR7wjKd5LSE6KlHXg3YpVfw3ocPrSu8Mufo',
+      );
       runApp(const AppPage());
     },
     (Object error, StackTrace stackTrace) => logger.e(error.toString()),

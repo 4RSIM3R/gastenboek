@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:next_starter/data/models/agenda/agenda_model.dart';
+import 'package:next_starter/presentation/pages/agenda/detail/agenda_detail_page.dart';
 import 'package:next_starter/presentation/pages/guest/guest_form_page.dart';
 import 'package:next_starter/presentation/pages/scan/scan_page.dart';
 import 'package:nik_validator/nik_validator.dart';
@@ -32,5 +34,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: ScanRoute.page),
     AutoRoute(page: GuestFormRoute.page),
+    AutoRoute(page: AgendaDetailRoute.page),
   ];
 }

@@ -1,12 +1,13 @@
-import 'package:adaptive_sizer/adaptive_sizer.dart';
 import 'package:auto_route/annotations.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:next_starter/common/extensions/extensions.dart';
+import 'package:next_starter/presentation/layouts/home/history/home_history_layout.dart';
+import 'package:next_starter/presentation/layouts/home/main/home_main_layout.dart';
+import 'package:next_starter/presentation/layouts/home/setting/home_setting_layout.dart';
 import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/app_assets.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -19,17 +20,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   List<Widget> body = [
-    MainPage(),
-    Container(
-      child: Center(
-        child: Text('History'),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: Text('Setting'),
-      ),
-    ),
+    const HomeMainLayout(),
+    const HomeHistoryLayout(),
+    const HomeSettingLayout(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -45,139 +38,23 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: body[_currentIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        color: ColorTheme.primary2,
-        animationDuration: Duration(milliseconds: 300),
-        onTap: (int newIndex) {
-          setState(() {
-            _currentIndex = newIndex;
-          });
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (val) {
+          setState(() => _currentIndex = val);
         },
-        items: [
-          ImageIcon(
-            AssetImage(AppAssets.icon_home),
-            color: Colors.white,
-          ),
-          ImageIcon(
-            AssetImage(AppAssets.icon_history),
-            color: Colors.white,
-          ),
-          ImageIcon(
-            AssetImage(AppAssets.icon_setting),
-            color: Colors.white,
-          ),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.clock), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings), label: 'Setting'),
         ],
       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(16),
-      //   child: Column(
-      //     children: [
-      //       Row(
-      //         children: [
-      //           Expanded(
-      //             child: InkWell(
-      //               onTap: () {
-      //                 context.route.push(const ScanRoute());
-      //               },
-      //               child: Container(
-      //                 width: double.infinity,
-      //                 padding: const EdgeInsets.all(16),
-      //                 decoration: BoxDecoration(
-      //                   color: Colors.blueAccent,
-      //                   borderRadius: BorderRadius.circular(5),
-      //                 ),
-      //                 child: const Column(
-      //                   crossAxisAlignment: CrossAxisAlignment.start,
-      //                   children: [
-      //                     Icon(Icons.book, color: Colors.white),
-      //                     SizedBox(height: 32),
-      //                     Text(
-      //                       'Buku Tamu',
-      //                       style: TextStyle(
-      //                           color: Colors.white,
-      //                           fontSize: 16,
-      //                           fontWeight: FontWeight.w500),
-      //                     ),
-      //                   ],
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           12.horizontalSpace,
-      //           Expanded(
-      //             child: Container(
-      //               width: double.infinity,
-      //               padding: const EdgeInsets.all(16),
-      //               decoration: BoxDecoration(
-      //                 color: Colors.blueAccent,
-      //                 borderRadius: BorderRadius.circular(5),
-      //               ),
-      //               child: const Column(
-      //                 crossAxisAlignment: CrossAxisAlignment.start,
-      //                 children: [
-      //                   Icon(Icons.schedule, color: Colors.white),
-      //                   SizedBox(height: 32),
-      //                   Text(
-      //                     'Informasi Jadwal',
-      //                     style: TextStyle(
-      //                         color: Colors.white,
-      //                         fontSize: 16,
-      //                         fontWeight: FontWeight.w500),
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //       12.verticalSpace,
-      //       Row(
-      //         children: [
-      //           Expanded(
-      //             child: Container(
-      //               width: double.infinity,
-      //               padding: const EdgeInsets.all(16),
-      //               decoration: BoxDecoration(
-      //                 color: Colors.blueAccent,
-      //                 borderRadius: BorderRadius.circular(5),
-      //               ),
-      //               child: const Column(
-      //                 crossAxisAlignment: CrossAxisAlignment.start,
-      //                 children: [
-      //                   Icon(Icons.info_outline, color: Colors.white),
-      //                   SizedBox(height: 32),
-      //                   Text(
-      //                     'Tentang',
-      //                     style: TextStyle(
-      //                         color: Colors.white,
-      //                         fontSize: 16,
-      //                         fontWeight: FontWeight.w500),
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //           12.horizontalSpace,
-      //           Expanded(
-      //             child: Container(
-      //               width: double.infinity,
-      //               padding: const EdgeInsets.all(16),
-      //             ),
-      //           ),
-      //         ],
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
 
 class MainPage extends StatelessWidget {
-  const MainPage({
-    super.key,
-  });
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +63,7 @@ class MainPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(24, 48, 24, 0),
+          margin: const EdgeInsets.fromLTRB(24, 48, 24, 0),
           alignment: Alignment.center,
           height: 80,
           child: Text(
@@ -195,7 +72,7 @@ class MainPage extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.fromLTRB(24, 0, 24, 48),
+          margin: const EdgeInsets.fromLTRB(24, 0, 24, 48),
           alignment: Alignment.center,
           child: Text(
             'We are provide some ways to verify your identity. Your information will be encrypted and stored securely',
@@ -203,17 +80,17 @@ class MainPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(height: 24),
-        ScanMenu(
+        const SizedBox(height: 24),
+        const ScanMenu(
           image: AppAssets.id_card,
           title: 'OCR Check',
         ),
-        SizedBox(height: 24),
-        ScanMenu(
+        const SizedBox(height: 24),
+        const ScanMenu(
           image: AppAssets.face_id,
           title: 'Liveness Check',
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -235,8 +112,8 @@ class ScanMenu extends StatelessWidget {
         context.route.push(const ScanRoute());
       },
       child: Container(
-        margin: EdgeInsets.fromLTRB(24, 0, 24, 0),
-        padding: EdgeInsets.all(24),
+        margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: ColorTheme.primary2.withOpacity(0.2),
           borderRadius: BorderRadius.circular(15),
@@ -247,14 +124,14 @@ class ScanMenu extends StatelessWidget {
         ),
         child: Row(children: [
           Image.asset(image, height: 57),
-          SizedBox(width: 24),
+          const SizedBox(width: 24),
           Expanded(
             child: Text(
               title,
               style: AppStyles.text12PxBold,
             ),
           ),
-          ImageIcon(
+          const ImageIcon(
             AssetImage(AppAssets.arrow_right),
             size: 24,
           )

@@ -15,6 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AgendaDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<AgendaDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AgendaDetailPage(
+          key: args.key,
+          model: args.model,
+        ),
+      );
+    },
     ChangePasswordRoute.name: (routeData) {
       final args = routeData.argsAs<ChangePasswordRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -30,44 +40,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ForgotPasswordPage(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginRouteArgs>(
-          orElse: () => const LoginRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: LoginPage(
-          key: args.key,
-          isAddAccount: args.isAddAccount,
-        ),
-      );
-    },
-    OtpRoute.name: (routeData) {
-      final args = routeData.argsAs<OtpRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: OtpPage(
-          key: args.key,
-          email: args.email,
-          isResetPassword: args.isResetPassword,
-        ),
-      );
-    },
-    RegisterRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const RegisterPage(),
-      );
-    },
-    SuccessRoute.name: (routeData) {
-      final args = routeData.argsAs<SuccessRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: SuccessPage(
-          key: args.key,
-          message: args.message,
-        ),
       );
     },
     FormRoute.name: (routeData) {
@@ -93,10 +65,38 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>(
+          orElse: () => const LoginRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LoginPage(
+          key: args.key,
+          isAddAccount: args.isAddAccount,
+        ),
+      );
+    },
+    OtpRoute.name: (routeData) {
+      final args = routeData.argsAs<OtpRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OtpPage(
+          key: args.key,
+          email: args.email,
+          isResetPassword: args.isResetPassword,
+        ),
+      );
+    },
     PostRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const PostPage(),
+      );
+    },
+    RegisterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegisterPage(),
       );
     },
     ScanRoute.name: (routeData) {
@@ -111,7 +111,55 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
+    SuccessRoute.name: (routeData) {
+      final args = routeData.argsAs<SuccessRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SuccessPage(
+          key: args.key,
+          message: args.message,
+        ),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [AgendaDetailPage]
+class AgendaDetailRoute extends PageRouteInfo<AgendaDetailRouteArgs> {
+  AgendaDetailRoute({
+    Key? key,
+    required AgendaModel model,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AgendaDetailRoute.name,
+          args: AgendaDetailRouteArgs(
+            key: key,
+            model: model,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AgendaDetailRoute';
+
+  static const PageInfo<AgendaDetailRouteArgs> page =
+      PageInfo<AgendaDetailRouteArgs>(name);
+}
+
+class AgendaDetailRouteArgs {
+  const AgendaDetailRouteArgs({
+    this.key,
+    required this.model,
+  });
+
+  final Key? key;
+
+  final AgendaModel model;
+
+  @override
+  String toString() {
+    return 'AgendaDetailRouteArgs{key: $key, model: $model}';
+  }
 }
 
 /// generated route for
@@ -167,6 +215,72 @@ class ForgotPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ForgotPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FormPage]
+class FormRoute extends PageRouteInfo<void> {
+  const FormRoute({List<PageRouteInfo>? children})
+      : super(
+          FormRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FormRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GuestFormPage]
+class GuestFormRoute extends PageRouteInfo<GuestFormRouteArgs> {
+  GuestFormRoute({
+    Key? key,
+    NIKModel? model,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GuestFormRoute.name,
+          args: GuestFormRouteArgs(
+            key: key,
+            model: model,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GuestFormRoute';
+
+  static const PageInfo<GuestFormRouteArgs> page =
+      PageInfo<GuestFormRouteArgs>(name);
+}
+
+class GuestFormRouteArgs {
+  const GuestFormRouteArgs({
+    this.key,
+    this.model,
+  });
+
+  final Key? key;
+
+  final NIKModel? model;
+
+  @override
+  String toString() {
+    return 'GuestFormRouteArgs{key: $key, model: $model}';
+  }
+}
+
+/// generated route for
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -251,6 +365,20 @@ class OtpRouteArgs {
 }
 
 /// generated route for
+/// [PostPage]
+class PostRoute extends PageRouteInfo<void> {
+  const PostRoute({List<PageRouteInfo>? children})
+      : super(
+          PostRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PostRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [RegisterPage]
 class RegisterRoute extends PageRouteInfo<void> {
   const RegisterRoute({List<PageRouteInfo>? children})
@@ -260,6 +388,34 @@ class RegisterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ScanPage]
+class ScanRoute extends PageRouteInfo<void> {
+  const ScanRoute({List<PageRouteInfo>? children})
+      : super(
+          ScanRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ScanRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -300,112 +456,4 @@ class SuccessRouteArgs {
   String toString() {
     return 'SuccessRouteArgs{key: $key, message: $message}';
   }
-}
-
-/// generated route for
-/// [FormPage]
-class FormRoute extends PageRouteInfo<void> {
-  const FormRoute({List<PageRouteInfo>? children})
-      : super(
-          FormRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FormRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [GuestFormPage]
-class GuestFormRoute extends PageRouteInfo<GuestFormRouteArgs> {
-  GuestFormRoute({
-    Key? key,
-    NIKModel? model,
-    List<PageRouteInfo>? children,
-  }) : super(
-          GuestFormRoute.name,
-          args: GuestFormRouteArgs(
-            key: key,
-            model: model,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'GuestFormRoute';
-
-  static const PageInfo<GuestFormRouteArgs> page =
-      PageInfo<GuestFormRouteArgs>(name);
-}
-
-class GuestFormRouteArgs {
-  const GuestFormRouteArgs({
-    this.key,
-    this.model,
-  });
-
-  final Key? key;
-
-  final NIKModel? model;
-
-  @override
-  String toString() {
-    return 'GuestFormRouteArgs{key: $key, model: $model}';
-  }
-}
-
-/// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [PostPage]
-class PostRoute extends PageRouteInfo<void> {
-  const PostRoute({List<PageRouteInfo>? children})
-      : super(
-          PostRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'PostRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ScanPage]
-class ScanRoute extends PageRouteInfo<void> {
-  const ScanRoute({List<PageRouteInfo>? children})
-      : super(
-          ScanRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ScanRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SplashPage]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SplashRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:next_starter/common/extensions/extensions.dart';
 import 'package:next_starter/presentation/components/components.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../application/auth/auth_cubit.dart';
 import '../../../../injection.dart';
@@ -68,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () {
                             FocusManager.instance.primaryFocus?.unfocus();
                             if (widget.isAddAccount) {
-                              context.pop();
+                              context.route.pop();
                             } else {
                               // context.read<AuthCubit>().login(formG.value);
                               context.route.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);

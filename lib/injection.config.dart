@@ -4,8 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -40,8 +39,6 @@ import 'data/repositories/post_repository.dart' as _i21;
 import 'presentation/pages/scan/cubit/scan_cubit.dart' as _i11;
 import 'presentation/routes/app_router.dart' as _i3;
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $initGetIt(
   _i1.GetIt getIt, {
@@ -62,7 +59,8 @@ Future<_i1.GetIt> $initGetIt(
       () => apiService.internetConnectionChecker());
   gh.lazySingleton<_i8.NetworkInfo>(
       () => _i8.NetworkInfoImpl(gh<_i7.InternetConnection>()));
-  gh.lazySingleton<_i9.PermissionInterface>(() => _i10.KendaliPermission());
+  gh.lazySingleton<_i9.PermissionInterface>(
+      () => const _i10.KendaliPermission());
   gh.factory<_i11.ScanCubit>(() => _i11.ScanCubit());
   gh.lazySingleton<_i12.SharedPrefStorageInterface>(
       () => _i12.SharedPreferenceStorage());
