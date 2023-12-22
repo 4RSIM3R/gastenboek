@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/annotations.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +11,7 @@ import 'package:next_starter/presentation/pages/scan/cubit/scan_cubit.dart';
 import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/app_assets.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
+import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
 class ScanPage extends StatefulWidget {
@@ -63,6 +66,20 @@ class _ScanPageState extends State<ScanPage> {
     } catch (e) {
       context.showSnackbar(title: "Error", message: e.toString(), error: true);
     }
+  }
+
+  File? image;
+
+  Future getImage() async {
+    final ImagePicker picker = ImagePicker();
+
+    // Pick an image.
+    final XFile? imagePicked = 
+        await picker.pickImage(source: ImageSource.gallery);
+    image =File(imagePicked!.path);
+    setState(() {
+      
+    });
   }
 
   @override
@@ -120,11 +137,20 @@ class _ScanPageState extends State<ScanPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CustomIconButton(
+                          SizedBox(width: 32),
+                          SizedBox(
                             height: 50,
                             width: 50,
-                            icon: AppAssets.icon_gallery,
-                            iconSize: 20,
+                            child: FloatingActionButton(
+                              backgroundColor: ColorTheme.primary2,
+                              onPressed: () async {
+                                await getImage();
+                              },
+                              child: ImageIcon(
+                                AssetImage(AppAssets.icon_gallery),
+                                size: 20,
+                              ),
+                            ),
                           ),
                           SizedBox(width: 32),
                           SizedBox(
