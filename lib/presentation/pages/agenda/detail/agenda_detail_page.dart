@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
 import 'package:next_starter/presentation/components/button/primary_button.dart';
+import 'package:next_starter/presentation/pages/guest/guest_list.dart';
 import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
 
@@ -95,7 +96,12 @@ class AgendaDetailPage extends StatelessWidget {
               height: 16,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GuestList()),
+                );
+              },
               child: Container(
                 height: 50,
                 width: double.infinity,
