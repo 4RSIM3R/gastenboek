@@ -74,13 +74,13 @@ dependencies:
   adaptive_sizer:
     git:
       url: https://github.com/kishor98100/adaptive_sizer
-  intl: ^0.18.1
+  intl: ^0.19.0
   stream_transform: ^2.1.0
   flavor: ^2.0.0
   shimmer: ^3.0.0
   lecle_downloads_path_provider: ^0.0.2+8
   camera: ^0.10.5+4
-  google_mlkit_text_recognition: ^0.10.0
+  google_mlkit_text_recognition: ^0.11.0
   nik_validator: ^1.1.2
   curved_navigation_bar: ^1.0.3
 

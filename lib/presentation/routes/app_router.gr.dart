@@ -76,6 +76,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const FormPage(),
       );
     },
+    GuestFormRoute.name: (routeData) {
+      final args = routeData.argsAs<GuestFormRouteArgs>(
+          orElse: () => const GuestFormRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GuestFormPage(
+          key: args.key,
+          model: args.model,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -98,17 +109,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
-      );
-    },
-    GuestFormRoute.name: (routeData) {
-      final args = routeData.argsAs<GuestFormRouteArgs>(
-          orElse: () => const GuestFormRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: GuestFormPage(
-          key: args.key,
-          model: args.model,
-        ),
       );
     },
   };
@@ -317,6 +317,44 @@ class FormRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GuestFormPage]
+class GuestFormRoute extends PageRouteInfo<GuestFormRouteArgs> {
+  GuestFormRoute({
+    Key? key,
+    NIKModel? model,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GuestFormRoute.name,
+          args: GuestFormRouteArgs(
+            key: key,
+            model: model,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GuestFormRoute';
+
+  static const PageInfo<GuestFormRouteArgs> page =
+      PageInfo<GuestFormRouteArgs>(name);
+}
+
+class GuestFormRouteArgs {
+  const GuestFormRouteArgs({
+    this.key,
+    this.model,
+  });
+
+  final Key? key;
+
+  final NIKModel? model;
+
+  @override
+  String toString() {
+    return 'GuestFormRouteArgs{key: $key, model: $model}';
+  }
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -370,42 +408,4 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [GuestFormPage]
-class GuestFormRoute extends PageRouteInfo<GuestFormRouteArgs> {
-  GuestFormRoute({
-    Key? key,
-    NIKModel? model,
-    List<PageRouteInfo>? children,
-  }) : super(
-          GuestFormRoute.name,
-          args: GuestFormRouteArgs(
-            key: key,
-            model: model,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'GuestFormRoute';
-
-  static const PageInfo<GuestFormRouteArgs> page =
-      PageInfo<GuestFormRouteArgs>(name);
-}
-
-class GuestFormRouteArgs {
-  const GuestFormRouteArgs({
-    this.key,
-    this.model,
-  });
-
-  final Key? key;
-
-  final NIKModel? model;
-
-  @override
-  String toString() {
-    return 'GuestFormRouteArgs{key: $key, model: $model}';
-  }
 }
