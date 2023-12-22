@@ -39,14 +39,19 @@ class _HomePageState extends State<HomePage> {
       ),
       body: body[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: true,
+        unselectedItemColor: ColorTheme.textGrey,
         currentIndex: _currentIndex,
         onTap: (val) {
           setState(() => _currentIndex = val);
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.clock), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings), label: 'Setting'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.clock), label: 'History'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.settings), label: 'Setting'),
         ],
       ),
     );
