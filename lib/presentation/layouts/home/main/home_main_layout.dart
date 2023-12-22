@@ -21,8 +21,12 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0, elevation: 0),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Event List'),
+          Container(
+            margin: EdgeInsets.fromLTRB(18, 16, 18, 0),
+            child: Text('Event Result', style: AppStyles.text18PxSemiBold),
+          ),
           StreamBuilder<List<Map<String, dynamic>>>(
             stream: _stream,
             builder: (context, snapshot) {
@@ -38,8 +42,8 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                                   model: AgendaModel.fromJson({})));
                             },
                             child: Container(
-                              padding: const EdgeInsets.all(8),
-                              margin: const EdgeInsets.only(bottom: 8),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              padding: const EdgeInsets.fromLTRB(4, 4, 16, 4),
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -48,11 +52,17 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 50,
+                                    width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        color: Colors.red),
+                                      borderRadius: BorderRadius.circular(4),
+                                      color: Colors.red,
+                                      image: DecorationImage(
+                                        image:
+                                            NetworkImage(e['thumbnail'] ?? ''),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(width: 8),
                                   Expanded(
@@ -63,7 +73,7 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                                         Text(
                                           e['date'],
                                           style: AppStyles.text12Px.copyWith(
-                                            color: Colors.red[600],
+                                            color: ColorTheme.primary2,
                                           ),
                                         ),
                                         SizedBox(height: 4),
@@ -83,8 +93,10 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                                       ],
                                     ),
                                   ),
-                                  Icon(CupertinoIcons.chevron_forward,
-                                      color: Colors.redAccent)
+                                  Icon(
+                                    CupertinoIcons.exclamationmark_circle,
+                                    color: ColorTheme.primary2,
+                                  )
                                 ],
                               ),
                             ),
