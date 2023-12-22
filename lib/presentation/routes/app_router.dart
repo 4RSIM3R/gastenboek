@@ -35,5 +35,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: ScanRoute.page),
     AutoRoute(page: GuestFormRoute.page),
     AutoRoute(page: AgendaDetailRoute.page),
+    // AutoRoute(page: GuestListRoute.page),
   ];
 }
