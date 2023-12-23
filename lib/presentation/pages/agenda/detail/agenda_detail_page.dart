@@ -6,6 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
 import 'package:next_starter/presentation/pages/guest/list/guest_list.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
+import 'package:next_starter/utils/opener.dart';
 
 @RoutePage()
 class AgendaDetailPage extends StatelessWidget {
@@ -55,16 +56,13 @@ class AgendaDetailPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      CupertinoIcons.location,
-                      size: 16,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      'Gedung Serba Guna Polinema',
-                      style: AppStyles.text12Px,
+                    Text('${model.location}', style: AppStyles.text12Px),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      onPressed: () {
+                        MapUtils.openMap(model.lat!, model.lng!);
+                      },
+                      icon: const Icon(CupertinoIcons.map_fill, size: 16),
                     )
                   ],
                 ),
