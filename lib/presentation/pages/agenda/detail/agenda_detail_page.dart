@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
-import 'package:next_starter/presentation/pages/guest/guest_list.dart';
+import 'package:next_starter/presentation/pages/guest/list/guest_list.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
 
 @RoutePage()
@@ -53,6 +53,7 @@ class AgendaDetailPage extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(
                       CupertinoIcons.location,
@@ -119,7 +120,8 @@ class AgendaDetailPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GuestList()),
+                  MaterialPageRoute(
+                      builder: (context) => GuestList(agendaId: model.id!)),
                 );
               },
               child: Container(
