@@ -16,7 +16,7 @@ class _GuestListState extends State<GuestList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Guest List'),
+        title: Text('Guest Lists'),
       ),
       body: ListView.builder(
         itemCount: 5,
