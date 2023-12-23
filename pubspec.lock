@@ -50,6 +50,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.2"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      sha256: "21afe4333076c02877d14f4a89df111e658a6d466cbfc802eb705eb91bd5adfd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.0"
   async:
     dependency: transitive
     description:
@@ -394,6 +402,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+  encrypt:
+    dependency: transitive
+    description:
+      name: encrypt
+      sha256: "62d9aa4670cc2a8798bab89b39fc71b6dfbacf615de6cf5001fb39f7e4a996a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.3"
   equatable:
     dependency: "direct main"
     description:
@@ -625,6 +641,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  galaxeus_lib:
+    dependency: transitive
+    description:
+      name: galaxeus_lib
+      sha256: "1a14a2143b21791c2d4d0fc2c89be0e31125ba9095ae49468f39d3b926c5c031"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.94"
   geocoding:
     dependency: "direct main"
     description:
@@ -786,7 +810,7 @@ packages:
     source: hosted
     version: "1.1.0"
   http:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: http
       sha256: d4872660c46d929f6b8a9ef4e7a7eff7e49bbf0c4ec3f385ee32df5119175139
@@ -925,10 +949,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.0"
+    version: "0.18.1"
   io:
     dependency: transitive
     description:
@@ -1073,6 +1097,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  midtrans_dart:
+    dependency: "direct main"
+    description:
+      name: midtrans_dart
+      sha256: "737b9c28077d6595cc4c5b720c16d420360f92fae45ad15a9b3617ae4cac026f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.0"
+  midtrans_snap:
+    dependency: "direct main"
+    description:
+      name: midtrans_snap
+      sha256: f9f63a4844364fa371ce8b61764040dc2e6f9d44abd5622a2eb3cc8cec288a79
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   mime:
     dependency: transitive
     description:
@@ -1678,6 +1718,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  toolkit:
+    dependency: transitive
+    description:
+      name: toolkit
+      sha256: f9fd472b18efa9105ad45ff27f504d6f9ba6a89f30d453e0f3362a4d3e4b51ea
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.2"
   typed_data:
     dependency: transitive
     description:
@@ -1870,6 +1918,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  webview_flutter:
+    dependency: transitive
+    description:
+      name: webview_flutter
+      sha256: "42393b4492e629aa3a88618530a4a00de8bb46e50e7b3993fedbfdc5352f0dbf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.2"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      sha256: b54c89fe14a6d26a2a46e24880da0441cdd2bf1f6d01a5b3e1d39558feb1de0b
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.13.1"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      sha256: dbe745ee459a16b6fec296f7565a8ef430d0d681001d8ae521898b9361854943
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.9.0"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      sha256: eebfabfa8a115b535b52031b8b26f7a4b58ceceab378bc9db8762b0fb46f7b5d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.10.0"
   win32:
     dependency: transitive
     description:

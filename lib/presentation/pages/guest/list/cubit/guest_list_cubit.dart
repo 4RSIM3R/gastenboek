@@ -40,10 +40,6 @@ class GuestListCubit extends Cubit<GuestListState> {
         'name': '${res.ktp?.nama}'
       };
 
-      // final data = Map.of(payload);
-
-      // data['user_id'] = user?.id;
-
       await supabase.from('guests').insert(data);
 
       fetch(id);
