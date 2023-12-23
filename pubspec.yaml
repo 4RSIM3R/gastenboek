@@ -90,6 +90,7 @@ dependencies:
   mnc_identifier_ocr: ^1.0.20
   midtrans_snap: ^1.0.0
   midtrans_dart: ^0.0.0
+  url_launcher: ^6.2.2
 
 # Local Database
 # drift: ^2.5.0

@@ -12,6 +12,7 @@ import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/app_assets.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 @RoutePage()
 class ScanPage extends StatefulWidget {
@@ -74,12 +75,42 @@ class _ScanPageState extends State<ScanPage> {
     final ImagePicker picker = ImagePicker();
 
     // Pick an image.
-    final XFile? imagePicked = 
+    final XFile? imagePicked =
         await picker.pickImage(source: ImageSource.gallery);
-    image =File(imagePicked!.path);
-    setState(() {
-      
-    });
+    image = File(imagePicked!.path);
+    setState(() {});
+  }
+
+  Future getImageFiles() async {
+    FilePickerResult? result;
+    String? fileName;
+    PlatformFile? pickedfile;
+    bool isLoading = false;
+    File? fileToDisplay;
+
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowMultiple: false,
+      );
+
+      if (result != null) {
+        fileName = result.files.first.name;
+        pickedfile = result.files.first;
+        fileToDisplay = File(pickedfile.path.toString());
+
+        print('File name $fileName');
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -168,11 +199,19 @@ class _ScanPageState extends State<ScanPage> {
                             ),
                           ),
                           SizedBox(width: 32),
-                          CustomIconButton(
+                          SizedBox(
                             height: 50,
                             width: 50,
-                            icon: AppAssets.icon_files,
-                            iconSize: 20,
+                            child: FloatingActionButton(
+                              backgroundColor: ColorTheme.primary2,
+                              onPressed: () async {
+                                getImageFiles();
+                              },
+                              child: ImageIcon(
+                                AssetImage(AppAssets.icon_files),
+                                size: 20,
+                              ),
+                            ),
                           ),
                         ],
                       ),
