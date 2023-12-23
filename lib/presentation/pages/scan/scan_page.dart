@@ -75,12 +75,10 @@ class _ScanPageState extends State<ScanPage> {
     final ImagePicker picker = ImagePicker();
 
     // Pick an image.
-    final XFile? imagePicked = 
+    final XFile? imagePicked =
         await picker.pickImage(source: ImageSource.gallery);
     image = File(imagePicked!.path);
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   Future getImageFiles() async {
@@ -90,7 +88,7 @@ class _ScanPageState extends State<ScanPage> {
     bool isLoading = false;
     File? fileToDisplay;
 
-    try{
+    try {
       setState(() {
         isLoading = true;
       });
@@ -99,7 +97,7 @@ class _ScanPageState extends State<ScanPage> {
         allowMultiple: false,
       );
 
-      if(result != null) {
+      if (result != null) {
         fileName = result.files.first.name;
         pickedfile = result.files.first;
         fileToDisplay = File(pickedfile.path.toString());
@@ -110,7 +108,7 @@ class _ScanPageState extends State<ScanPage> {
       setState(() {
         isLoading = false;
       });
-    } catch(e) {
+    } catch (e) {
       print(e);
     }
   }
@@ -206,7 +204,7 @@ class _ScanPageState extends State<ScanPage> {
                             width: 50,
                             child: FloatingActionButton(
                               backgroundColor: ColorTheme.primary2,
-                              onPressed: () async{
+                              onPressed: () async {
                                 getImageFiles();
                               },
                               child: ImageIcon(

@@ -87,6 +87,7 @@ dependencies:
   supabase: ^2.0.2
   supabase_flutter: ^2.0.2
   latlong2: ^0.9.0
+  mnc_identifier_ocr: ^1.0.20
 
 # Local Database
 # drift: ^2.5.0

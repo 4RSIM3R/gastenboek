@@ -1057,6 +1057,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mnc_identifier_ocr:
+    dependency: "direct main"
+    description:
+      name: mnc_identifier_ocr
+      sha256: "1079b740e0ca2ea83b6b5a3d34fccf4ebbff3f35a9e12d89984c36710cafcb92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.20"
   nested:
     dependency: transitive
     description:

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:next_starter/data/repositories/auth_repository.dart';
+import 'package:next_starter/utils/constant.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
@@ -18,31 +19,29 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepository repo;
 
   Future<void> login(Map<String, dynamic> json) async {
-    // final NotificationInterface notification = locator<NotificationInterface>();
     emit(const AuthState.loading());
-    final result = await repo.login(json);
-    await result.fold<FutureOr<void>>(
-      (l) => emit(AuthState.error(l.message)),
-      (r) async {
-        // final user = await userRepo.profile();
-        // await user.fold<FutureOr<void>>(
-        //   (l) => emit(AuthState.error(l.message)),
-        //   (r) async {
-        //     // await notification.setExternalUserByEmail(r.email!);
-        emit(const AuthState.success("Selamat datang kembali!"));
-        //   },
-        // );
-      },
-    );
+    try {
+      await supabase.auth.signInWithPassword(
+        email: json["email"],
+        password: json["password"],
+      );
+      emit(const AuthState.success("Selamat datang kembali!"));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
   }
 
   Future<void> register(Map<String, dynamic> json) async {
     emit(const AuthState.loading());
-    final result = await repo.register(json);
-    await result.fold<FutureOr<void>>(
-      (l) => emit(AuthState.error(l.message)),
-      (r) => emit(const AuthState.success("Registrasi berhasil!")),
-    );
+    try {
+      await supabase.auth.signUp(
+        email: json["email"],
+        password: json["password"],
+      );
+      emit(const AuthState.success("Selamat datang kembali!"));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
   }
 
   Future<void> verifyOtp(Map<String, dynamic> json) async {

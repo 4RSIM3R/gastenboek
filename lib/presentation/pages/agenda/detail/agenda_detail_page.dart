@@ -100,7 +100,7 @@ class AgendaDetailPage extends StatelessWidget {
                             child: Icon(
                               CupertinoIcons.location_solid,
                               color: Colors.red,
-                              ),
+                            ),
                           ),
                         ]),
                       ]),
