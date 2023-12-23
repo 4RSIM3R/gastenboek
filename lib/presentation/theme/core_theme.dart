@@ -2,7 +2,7 @@ part of 'theme.dart';
 
 class AppCoreTheme {
   static const int primaryColorValue = 0xFFC1272D;
-  static const primaryColor = Color(primaryColorValue);
+  static const primaryColor = ColorTheme.primary2;
   static const MaterialColor primarySwatch = MaterialColor(
     primaryColorValue,
     <int, Color>{

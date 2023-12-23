@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
 import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
@@ -19,13 +20,14 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(toolbarHeight: 0, elevation: 0),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(18, 16, 18, 0),
-            child: Text('Event Result', style: AppStyles.text18PxSemiBold),
+            margin: const EdgeInsets.fromLTRB(18, 16, 18, 0),
+            child: Text('Your Agenda', style: AppStyles.text18PxSemiBold),
           ),
           StreamBuilder<List<Map<String, dynamic>>>(
             stream: _stream,
@@ -38,8 +40,9 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                         .map(
                           (e) => InkWell(
                             onTap: () {
-                              context.router.push(AgendaDetailRoute(
-                                  model: AgendaModel.fromJson({})));
+                              context.router.push(
+                                AgendaDetailRoute(model: AgendaModel.fromJson(e)),
+                              );
                             },
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 12),
@@ -58,42 +61,36 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                                       borderRadius: BorderRadius.circular(4),
                                       color: Colors.red,
                                       image: DecorationImage(
-                                        image:
-                                            NetworkImage(e['thumbnail'] ?? ''),
+                                        image: NetworkImage(e['thumbnail'] ?? ''),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 8),
+                                  const SizedBox(width: 8),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          e['date'],
+                                          DateFormat('dd MMMM yyyy').format(DateTime.parse(e['date'])),
                                           style: AppStyles.text12Px.copyWith(
                                             color: ColorTheme.primary2,
                                           ),
                                         ),
-                                        SizedBox(height: 4),
+                                        const SizedBox(height: 4),
                                         Text(
                                           e['name'],
                                           style: AppStyles.text12PxMedium,
                                         ),
-                                        SizedBox(
-                                          height: 4,
-                                        ),
+                                        const SizedBox(height: 4),
                                         Text(
                                           e['location'] ?? 'Unknown Location',
-                                          style: AppStyles.text12Px.copyWith(
-                                            color: Colors.grey[600],
-                                          ),
+                                          style: AppStyles.text12Px.copyWith(color: Colors.grey[600]),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     CupertinoIcons.exclamationmark_circle,
                                     color: ColorTheme.primary2,
                                   )

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:next_starter/presentation/components/components.dart';
+import 'package:next_starter/utils/constant.dart';
 
 import '../../common/extensions/extensions.dart';
 import '../../injection.dart';
@@ -23,13 +24,11 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> init() async {
     await 1.delayedSeconds;
-    // final user = await locator<SessionSource>().hasSession;
-    // if (user) {
-    //   locator<AppRouter>().replace(const HomeRoute());
-    //   return;
-    // }
-    // locator<AppRouter>().replace(LoginRoute());
-    locator<AppRouter>().replace(const HomeRoute());
+    if (supabase.auth.currentUser != null) {
+      locator<AppRouter>().replace(const HomeRoute());
+    } else {
+      locator<AppRouter>().replace(LoginRoute());
+    }
   }
 
   @override

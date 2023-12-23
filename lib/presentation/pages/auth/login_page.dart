@@ -24,19 +24,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final bloc = locator<AuthCubit>();
+
   final form = fb.group({
-    'email': [
-      kDebugMode ? 'agus@nexteam.id' : '',
-      Validators.required,
-      Validators.email,
-    ],
-    'password': [kDebugMode ? '123a123a123' : '', Validators.required],
+    'email': [kDebugMode ? 'agus@nexteam.id' : '', Validators.required, Validators.email],
+    'password': [kDebugMode ? 'password' : '', Validators.required],
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<AuthCubit>(),
+      create: (context) => bloc,
       child: ReactiveFormBuilder(
         form: () => form,
         builder: (context, form, child) => BaseScaffold(
@@ -60,21 +58,15 @@ class _LoginPageState extends State<LoginPage> {
               },
               builder: (context, state) {
                 return ReactiveFormConsumer(
-                  builder: (context, formG, child) {
+                  builder: (context, form, child) {
                     return Column(
                       children: [
                         PrimaryButton(
                           onTap: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                            if (widget.isAddAccount) {
-                              context.route.pop();
-                            } else {
-                              // context.read<AuthCubit>().login(formG.value);
-                              context.route.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
-                            }
+                            bloc.login(form.value);
                           },
                           title: "Masuk",
-                          isEnable: formG.valid,
+                          isEnable: form.valid,
                         ),
                         18.verticalSpaceRadius,
                         Text.rich(

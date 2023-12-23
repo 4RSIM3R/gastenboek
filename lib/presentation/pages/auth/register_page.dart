@@ -31,8 +31,8 @@ class RegisterPage extends StatelessWidget {
 
 class RegisterView extends StatelessWidget {
   const RegisterView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +59,11 @@ class RegisterView extends StatelessWidget {
                 orElse: () {},
                 loading: () => context.showLoadingIndicator(),
                 error: (msg) {
-                  context.showSnackbar(
-                      title: "Error", message: msg, error: true);
+                  context.showSnackbar(title: "Error", message: msg, error: true);
                 },
                 success: (msg) {
                   context.hideLoading();
-                  context.route.push(
-                    OtpRoute(email: form.controls['email']!.value.toString()),
-                  );
+                  context.route.replace(LoginRoute());
                   context.showSnackbar(title: "Sukses", message: msg);
                 },
               );
@@ -79,13 +76,11 @@ class RegisterView extends StatelessWidget {
                       FocusManager.instance.primaryFocus?.unfocus();
                       // context.read<AuthCubit>().register(formL.rawValue);
                       context.route.push(
-                        OtpRoute(
-                            email: form.controls['email']!.value.toString()),
+                        OtpRoute(email: form.controls['email']!.value.toString()),
                       );
                     },
                     title: "Daftar",
-                    isEnable:
-                        formL.valid && formL.control('unit_1').value != -1,
+                    isEnable: formL.valid && formL.control('unit_1').value != -1,
                   );
                 },
               );
@@ -119,15 +114,6 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
               28.verticalSpaceRadius,
-              // const TextInput(
-              //   title: "Nip",
-              //   formControlName: "nip",
-              //   hint: 'Masukkan NIP',
-              //   prefix: Icon(Icons.numbers),
-              //   textInputType: TextInputType.number,
-              //   isRequiredText: true,
-              // ),
-              // 6.verticalSpaceRadius,
               const TextInput(
                 title: "Nama",
                 formControlName: "name",
@@ -161,8 +147,7 @@ class RegisterView extends StatelessWidget {
                 isRequiredText: true,
                 prefix: const Icon(Icons.key),
                 validationMessages: {
-                  ValidationMessage.minLength: (p0) =>
-                      'Password Minimal 8 karakter',
+                  ValidationMessage.minLength: (p0) => 'Password Minimal 8 karakter',
                 },
               ),
               18.verticalSpace,
@@ -180,8 +165,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       // recognizer: TapGestureRecognizer()
                       // ..onTap = () => context.route.push(OtpRoute(email: "Aaab".toString())),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => context.route.pop(),
+                      recognizer: TapGestureRecognizer()..onTap = () => context.route.pop(),
                     ),
                   ],
                 ),
