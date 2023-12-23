@@ -12,6 +12,7 @@ class AgendaDetailPage extends StatelessWidget {
   const AgendaDetailPage({super.key, required this.model});
 
   final AgendaModel model;
+  final bool counterRotate = true;
 
   @override
   Widget build(BuildContext context) {
@@ -82,14 +83,26 @@ class AgendaDetailPage extends StatelessWidget {
                   child: FlutterMap(
                       options: MapOptions(
                         initialCenter: LatLng(-7.946639, 112.615876),
-                        initialZoom: 16,
+                        initialZoom: 18,
                       ),
                       children: [
                         TileLayer(
                           urlTemplate:
                               'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                           userAgentPackageName: 'com.example.app',
-                        )
+                        ),
+                        MarkerLayer(rotate: counterRotate, markers: const [
+                          Marker(
+                            point: LatLng(-7.946639, 112.615876),
+                            width: 64,
+                            height: 64,
+                            alignment: Alignment.centerLeft,
+                            child: Icon(
+                              CupertinoIcons.location_solid,
+                              color: Colors.red,
+                              ),
+                          ),
+                        ]),
                       ]),
                 ),
                 SizedBox(
