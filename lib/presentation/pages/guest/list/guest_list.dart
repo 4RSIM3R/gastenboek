@@ -76,19 +76,16 @@ class _GuestListState extends State<GuestList> {
           builder: (context, state) {
             return state.maybeMap(
               orElse: () => const SizedBox.shrink(),
-              success: (success) => !success.payload.map((e) => e.userId).toList().contains(supabase.auth.currentUser?.id)
-                  ? FloatingActionButton(
-                      backgroundColor: ColorTheme.primary2,
-                      onPressed: () {
-                        bloc.insert(widget.agendaId);
-                      },
-                      child: const Icon(CupertinoIcons.add),
-                    )
-                  : FloatingActionButton(
-                      backgroundColor: ColorTheme.primary2,
-                      onPressed: () {},
-                      child: const Icon(Icons.monetization_on_outlined),
-                    ),
+              success: (success) =>
+                  !success.payload.map((e) => e.userId).toList().contains(supabase.auth.currentUser?.id)
+                      ? FloatingActionButton(
+                          backgroundColor: ColorTheme.primary2,
+                          onPressed: () {
+                            bloc.insert(widget.agendaId);
+                          },
+                          child: const Icon(CupertinoIcons.add),
+                        )
+                      : Container(),
             );
           },
         ),

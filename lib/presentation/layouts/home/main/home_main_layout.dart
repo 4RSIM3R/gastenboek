@@ -59,7 +59,7 @@ class _HomeMainLayoutState extends State<HomeMainLayout> {
                                     height: 70,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      color: Colors.red,
+                                      color: ColorTheme.primary2,
                                       image: DecorationImage(
                                         image: NetworkImage(e['thumbnail'] ?? ''),
                                         fit: BoxFit.cover,

@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: BaseLogo(isSmall: true),
                 ),
                 Text(
-                  'Selamat datang di Nexteam',
+                  'Selamat datang di Gastenboek',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: CustomTextTheme.paragraph3.copyWith(

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
 import 'package:next_starter/presentation/pages/guest/list/guest_list.dart';
@@ -19,7 +20,7 @@ class AgendaDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Event'),
+        title: const Text('Detail Event'),
       ),
       body: Stack(
         children: [
@@ -28,35 +29,33 @@ class AgendaDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   height: 200,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                        'https://images.unsplash.com/photo-1607013407627-6ee814329547?q=80&w=2764&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                        fit: BoxFit.cover),
+                    child: Image.network('${model.thumbnail}', fit: BoxFit.cover),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
-                  'March 21, 2023',
+                  DateFormat('MMMM dd, yyyy').format(model.date!),
                   style: AppStyles.text12PxMedium.copyWith(color: Colors.grey),
                 ),
                 Text(
                   model.name ?? 'Wisuda Angkatan 2023 - JTI Polinema',
                   style: AppStyles.text18Px,
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Text(
-                  'ini nanti ada deskripsi eventnya',
+                  '${model.description}',
                   style: AppStyles.text12Px.copyWith(color: Colors.grey),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${model.location}', style: AppStyles.text12Px),
+                    Text('${model.location}', style: AppStyles.text12Px.copyWith(color: Colors.grey)),
                     const SizedBox(width: 8),
                     IconButton(
                       onPressed: () {
@@ -66,12 +65,9 @@ class AgendaDetailPage extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 12),
-                Divider(
-                  thickness: 2,
-                  color: Colors.grey[300],
-                ),
-                SizedBox(height: 12),
+                const SizedBox(height: 4),
+                Divider(thickness: 2, color: Colors.grey[300]),
+                const SizedBox(height: 4),
                 Container(
                   height: 200,
                   width: double.infinity,
@@ -80,31 +76,31 @@ class AgendaDetailPage extends StatelessWidget {
                     color: Colors.grey[300],
                   ),
                   child: FlutterMap(
-                      options: MapOptions(
-                        initialCenter: LatLng(-7.946639, 112.615876),
-                        initialZoom: 18,
+                    options:  MapOptions(
+                      initialCenter: LatLng(model.lat!, model.lng!),
+                      initialZoom: 18,
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        userAgentPackageName: 'com.example.app',
                       ),
-                      children: [
-                        TileLayer(
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.app',
-                        ),
-                        MarkerLayer(rotate: counterRotate, markers: const [
+                      MarkerLayer(
+                        rotate: counterRotate,
+                        markers: [
                           Marker(
-                            point: LatLng(-7.946639, 112.615876),
+                            point: LatLng(model.lat!, model.lng!),
                             width: 64,
                             height: 64,
                             alignment: Alignment.centerLeft,
-                            child: Icon(
-                              CupertinoIcons.location_solid,
-                              color: Colors.red,
-                            ),
+                            child: const Icon(CupertinoIcons.location_solid, color: Colors.red),
                           ),
-                        ]),
-                      ]),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
               ],
@@ -118,8 +114,7 @@ class AgendaDetailPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => GuestList(agendaId: model.id!)),
+                  MaterialPageRoute(builder: (context) => GuestList(agendaId: model.id!)),
                 );
               },
               child: Container(
@@ -133,8 +128,7 @@ class AgendaDetailPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Check Attendance',
-                    style: AppStyles.text14PxSemiBold
-                        .copyWith(color: Colors.white),
+                    style: AppStyles.text14PxSemiBold.copyWith(color: Colors.white),
                   ),
                 ),
               ),

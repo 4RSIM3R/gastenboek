@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:next_starter/common/extensions/extensions.dart';
@@ -8,6 +8,7 @@ import 'package:next_starter/presentation/layouts/home/setting/home_setting_layo
 import 'package:next_starter/presentation/routes/app_router.dart';
 import 'package:next_starter/presentation/theme/app_assets.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
+import 'package:next_starter/utils/constant.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -29,13 +30,23 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
           'Gastenboek',
           style: AppStyles.text18PxSemiBold,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              supabase.auth.signOut().then((value) {
+                context.router.replace(LoginRoute());
+              });
+            },
+            icon: const Icon(Icons.exit_to_app, color: Colors.redAccent,),
+          )
+        ],
       ),
       body: body[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -46,12 +57,9 @@ class _HomePageState extends State<HomePage> {
           setState(() => _currentIndex = val);
         },
         items: const [
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.clock), label: 'History'),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.settings), label: 'Setting'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.clock), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings), label: 'Setting'),
         ],
       ),
     );
