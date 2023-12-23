@@ -5,7 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:next_starter/data/models/agenda/agenda_model.dart';
-import 'package:next_starter/presentation/pages/guest/guest_list.dart';
+import 'package:next_starter/presentation/pages/guest/list/guest_list.dart';
 import 'package:next_starter/presentation/theme/theme.dart';
 
 @RoutePage()
@@ -52,6 +52,7 @@ class AgendaDetailPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('${model.location}', style: AppStyles.text12Px),
                     const SizedBox(width: 8),
@@ -83,7 +84,7 @@ class AgendaDetailPage extends StatelessWidget {
                       TileLayer(
                         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                         userAgentPackageName: 'com.example.app',
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -99,7 +100,7 @@ class AgendaDetailPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GuestList()),
+                  MaterialPageRoute(builder: (context) => GuestList(agendaId: model.id!)),
                 );
               },
               child: Container(
